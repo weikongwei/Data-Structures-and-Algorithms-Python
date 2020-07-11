@@ -1,30 +1,78 @@
-from functools import lru_cache
+# Method 1: recursion + memoization (Top-down)
+# Outer function is a closure to hold cache
+def fib_outer():
+    cache = {}
 
-@lru_cache(maxsize = 1000)
+    # Inter function is to do calculations
+    def fib(n):
+
+        if n <= 1:
+            return n
+
+        if n not in list(cache.keys()):
+            cache[n] = fib(n - 1) + fib(n - 2)
+            # print(cache)
+
+        return cache[n]
+
+    return fib
+
+num = 50
+f = fib_outer()
+print("Recursion + memoization:",f(num))
+
+
+# Method 2: bottom up (iteration)
+
 def fib(n):
-  if n < 2:
-    return n
-  else:
-    return fib(n-1) + fib(n-2)
+  result = [0,1]
 
-print(fib(10))
-print(fib.cache_info())
+  for i in range(2,n+1):
+    result.append(result[i-1]+result[i-2])
 
+  return result[-1]
 
-cache = {}
-
-def fibo(n):
-  if n in cache:
-    return cache[n]
-  elif n < 2:
-    cache[n] = n
-    return cache[n]
-  else :
-    cache[n] = fib(n-1) + fib(n-2)
-  
-    return cache[n]
+print("Bottom-up:", fib(num))
 
 
-x = fibo(8)
-print(cache)
-print(x)
+
+
+
+
+
+
+
+
+
+# Solution
+
+# from functools import lru_cache
+#
+# @lru_cache(maxsize = 1000)
+# def fib(n):
+#   if n < 2:
+#     return n
+#   else:
+#     return fib(n-1) + fib(n-2)
+#
+# print(fib(10))
+# print(fib.cache_info())
+#
+#
+# cache = {}
+#
+# def fibo(n):
+#   if n in cache:
+#     return cache[n]
+#   elif n < 2:
+#     cache[n] = n
+#     return cache[n]
+#   else :
+#     cache[n] = fib(n-1) + fib(n-2)
+#
+#     return cache[n]
+#
+#
+# x = fibo(8)
+# print(cache)
+# print(x)
