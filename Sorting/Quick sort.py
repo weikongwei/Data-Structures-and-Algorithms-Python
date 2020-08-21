@@ -14,7 +14,7 @@ def partition(array, pivot, left, right):
     pivotvalue = array[pivot]
     partitionindex = left
 
-    for i in range(left,right):
+    for i in range(left,right):    # scaning for element smaller than pivotvalue, and place them to the 0 then 1,2,3
         if array[i] < pivotvalue:
             swap(array, i, partitionindex)
             partitionindex += 1
