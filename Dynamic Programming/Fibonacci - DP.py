@@ -1,27 +1,30 @@
 # Method 1: recursion + memoization (Top-down)
 # Outer function is a closure to hold cache
+
+import time
+
 def fib_outer():
     cache = {}
 
     # Inter function is to do calculations
     def fib(n):
-
         if n <= 1:
             return n
-
         if n not in list(cache.keys()):
             cache[n] = fib(n - 1) + fib(n - 2)
             # print(cache)
-
         return cache[n]
 
     return fib
 
 num = 50
+start = time.time()
 f = fib_outer()
 print("Recursion + memoization:",f(num))
+print("Time used: " , time.time() - start)
 
 
+#################################
 # Method 2: bottom up (iteration)
 
 def fib(n):
@@ -32,11 +35,10 @@ def fib(n):
 
   return result[-1]
 
-print("Bottom-up:", fib(num))
-
-
-
-
+start = time.time()
+f = fib(num)
+print("Bottom-up:", f)
+print("Time used: " , time.time() - start)
 
 
 
