@@ -9,9 +9,6 @@ def mergesort(array):
     left = array[0:mid]
     right = array[mid:]
 
-    # print("left:",left)
-    # print("right:",right)
-
     return merge(mergesort(left), mergesort(right))
 
 
